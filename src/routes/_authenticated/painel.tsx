@@ -388,7 +388,7 @@ function Painel() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="font-display text-3xl">{formatBRL(Number(booking.total))}</p>
+                        <p className="price-figure">{formatBRL(Number(booking.total))}</p>
                         {Number(booking.discount_amount) > 0 && (
                           <p className="text-sm text-muted-foreground">
                             desconto de {formatBRL(Number(booking.discount_amount))}

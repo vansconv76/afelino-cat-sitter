@@ -201,7 +201,7 @@ function Admin() {
                       )}
                     </div>
                     <div className="text-right">
-                      <p className="font-display text-3xl">{formatBRL(Number(booking.total))}</p>
+                      <p className="price-figure">{formatBRL(Number(booking.total))}</p>
                       <Select
                         value={booking.status}
                         onValueChange={(status) =>

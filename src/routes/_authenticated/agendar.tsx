@@ -449,7 +449,7 @@ function Agendar() {
 
                 <div className="mt-5 flex items-end justify-between border-t border-border pt-5">
                   <span className="text-sm text-muted-foreground">Total</span>
-                  <span className="font-display text-3xl">{formatBRL(quote.total)}</span>
+                  <span className="price-figure">{formatBRL(quote.total)}</span>
                 </div>
 
                 <Button type="submit" size="lg" className="mt-6 w-full" disabled={busy}>
