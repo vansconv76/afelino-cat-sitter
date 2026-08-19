@@ -143,7 +143,7 @@ function Painel() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Área do tutor</p>
-            <h1 className="mt-3 text-4xl">Meu painel</h1>
+            <h1 className="mt-3">Meu painel</h1>
           </div>
           <div className="flex gap-3">
             {account.data?.isAdmin && (
@@ -162,7 +162,7 @@ function Painel() {
         {account.data && (
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.15fr]">
             <section className="surface-card p-7">
-              <h2 className="text-xl">Dados do tutor</h2>
+              <h2>Dados do tutor</h2>
               <form className="mt-5 space-y-4" onSubmit={onSaveProfile}>
                 <div className="space-y-2">
                   <Label htmlFor="full_name">Nome completo</Label>
@@ -216,9 +216,9 @@ function Painel() {
             </section>
 
             <section className="surface-card p-7">
-              <h2 className="text-xl">Meus gatos</h2>
+              <h2>Meus gatos</h2>
               {cats.length === 0 ? (
-                <p className="mt-3 text-sm text-muted-foreground">
+                <p className="mt-3 text-muted-foreground">
                   Nenhum gato cadastrado ainda. Cadastre ao menos um para agendar visitas.
                 </p>
               ) : (
@@ -235,7 +235,7 @@ function Painel() {
                             <span className="text-muted-foreground"> · {cat.age_years} anos</span>
                           )}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground">
                           {cat.temperament || "Temperamento não informado"}
                           {cat.needs_medication ? " · usa medicação" : ""}
                         </p>
@@ -276,7 +276,7 @@ function Painel() {
               )}
 
               <form className="mt-7 space-y-4 border-t border-border pt-6" onSubmit={onSaveCat}>
-                <h3 className="text-lg">{catForm.id ? "Editar gato" : "Cadastrar gato"}</h3>
+                <h3>{catForm.id ? "Editar gato" : "Cadastrar gato"}</h3>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="cat_name">Nome</Label>
@@ -313,7 +313,7 @@ function Painel() {
                 <div className="flex items-center justify-between rounded-xl border border-border px-4 py-3">
                   <div>
                     <Label htmlFor="cat_med">Usa medicação</Label>
-                    <p className="text-xs text-muted-foreground">Oral ou tópica</p>
+                    <p className="text-sm text-muted-foreground">Oral ou tópica</p>
                   </div>
                   <Switch
                     id="cat_med"
@@ -361,7 +361,7 @@ function Painel() {
 
         {account.data && (
           <section className="mt-12">
-            <h2 className="text-2xl">Minhas reservas</h2>
+            <h2>Minhas reservas</h2>
             {bookings.length === 0 ? (
               <p className="mt-3 text-muted-foreground">
                 Você ainda não tem reservas.{" "}
@@ -377,20 +377,20 @@ function Painel() {
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div>
                         <p className="eyebrow">{STATUS_LABEL[booking.status] ?? booking.status}</p>
-                        <h3 className="mt-2 text-xl">
+                        <h3 className="mt-2">
                           {booking.booking_visits?.length ?? 0} visita(s) de{" "}
                           {booking.duration_minutes} min · {booking.cat_count} gato(s)
                         </h3>
-                        <p className="mt-1 text-sm text-muted-foreground">
+                        <p className="mt-1 text-muted-foreground">
                           {booking.address} · {booking.neighborhood}
                           {booking.with_medication ? " · com medicação" : ""}
                           {booking.previsit ? " · com pré-visita" : ""}
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="font-display text-2xl">{formatBRL(Number(booking.total))}</p>
+                        <p className="font-display text-3xl">{formatBRL(Number(booking.total))}</p>
                         {Number(booking.discount_amount) > 0 && (
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-sm text-muted-foreground">
                             desconto de {formatBRL(Number(booking.discount_amount))}
                           </p>
                         )}
@@ -412,7 +412,7 @@ function Painel() {
                     </ul>
 
                     {booking.notes && (
-                      <p className="mt-4 text-sm text-muted-foreground">{booking.notes}</p>
+                      <p className="mt-4 text-muted-foreground">{booking.notes}</p>
                     )}
 
                     {booking.status !== "cancelada" && booking.status !== "concluida" && (

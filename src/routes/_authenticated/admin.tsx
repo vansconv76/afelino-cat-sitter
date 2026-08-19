@@ -150,7 +150,7 @@ function Admin() {
       <div className="flex min-h-screen flex-col">
         <SiteHeader />
         <main className="mx-auto w-full max-w-3xl flex-1 px-5 py-20">
-          <h1 className="text-3xl">Acesso restrito</h1>
+          <h1>Acesso restrito</h1>
           <p className="mt-3 text-muted-foreground">
             Esta área é exclusiva da equipe Afelino.
           </p>
@@ -169,7 +169,7 @@ function Admin() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-12">
         <p className="eyebrow">Interno</p>
-        <h1 className="mt-3 text-4xl">Painel administrativo</h1>
+        <h1 className="mt-3">Painel administrativo</h1>
 
         {overview.isLoading && <p className="mt-10 text-muted-foreground">Carregando...</p>}
 
@@ -190,18 +190,18 @@ function Admin() {
                 <div key={booking.id} className="surface-card p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <h2 className="text-lg">{profileName(booking.tutor_id)}</h2>
-                      <p className="text-sm text-muted-foreground">
+                      <h2>{profileName(booking.tutor_id)}</h2>
+                      <p className="text-muted-foreground">
                         {booking.duration_minutes} min · {booking.cat_count} gato(s) ·{" "}
                         {booking.neighborhood} · {booking.booking_visits?.length ?? 0} visita(s)
                       </p>
-                      <p className="text-sm text-muted-foreground">{booking.address}</p>
+                      <p className="text-muted-foreground">{booking.address}</p>
                       {booking.notes && (
-                        <p className="mt-2 text-sm text-muted-foreground">{booking.notes}</p>
+                        <p className="mt-2 text-muted-foreground">{booking.notes}</p>
                       )}
                     </div>
                     <div className="text-right">
-                      <p className="font-display text-2xl">{formatBRL(Number(booking.total))}</p>
+                      <p className="font-display text-3xl">{formatBRL(Number(booking.total))}</p>
                       <Select
                         value={booking.status}
                         onValueChange={(status) =>
@@ -237,8 +237,8 @@ function Admin() {
 
             <TabsContent value="precos" className="mt-6">
               <div className="surface-card p-7">
-                <h2 className="text-xl">Tabela de preços</h2>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <h2>Tabela de preços</h2>
+                <p className="mt-1 text-muted-foreground">
                   Valores em reais para itens BRL e em fração decimal para percentuais (0.2 = 20%).
                 </p>
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -288,7 +288,7 @@ function Admin() {
 
             <TabsContent value="feriados" className="mt-6">
               <div className="surface-card p-7">
-                <h2 className="text-xl">Feriados com adicional</h2>
+                <h2>Feriados com adicional</h2>
                 <div className="mt-5 flex flex-wrap items-end gap-3">
                   <div className="space-y-1">
                     <Label htmlFor="holiday-day">Data</Label>
@@ -342,7 +342,7 @@ function Admin() {
 
             <TabsContent value="depoimentos" className="mt-6 grid gap-6 lg:grid-cols-2">
               <div className="surface-card p-7">
-                <h2 className="text-xl">
+                <h2>
                   {testimonial.id ? "Editar depoimento" : "Novo depoimento"}
                 </h2>
                 <div className="mt-5 space-y-4">
@@ -466,8 +466,8 @@ function Admin() {
                             · {item.neighborhood} · {item.rating}/5
                           </span>
                         </p>
-                        <p className="mt-2 text-sm text-muted-foreground">{item.content}</p>
-                        <p className="mt-2 text-xs text-muted-foreground">
+                        <p className="mt-2 text-muted-foreground">{item.content}</p>
+                        <p className="mt-2 text-sm text-muted-foreground">
                           {item.published ? "Publicado" : "Oculto"} · ordem {item.sort_order}
                         </p>
                       </div>

@@ -59,12 +59,12 @@ function Home() {
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24">
         <div>
           <p className="eyebrow">Alphaville · Tamboré</p>
-          <h1 className="mt-4 text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
+          <h1 className="mt-4 leading-[1.05]">
             Seu gato fica em casa.
             <br />
             A rotina dele continua.
           </h1>
-          <p className="mt-6 max-w-md text-lg text-muted-foreground">
+          <p className="mt-6 max-w-md text-muted-foreground">
             A Afelino cuida de gatos no território deles: visitas domiciliares com alimentação,
             caixa de areia, medicação no horário e relatório com foto para você acompanhar de longe.
           </p>
@@ -73,7 +73,7 @@ function Home() {
               <Link to="/agendar">Agendar visitas</Link>
             </Button>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-4 text-muted-foreground">
             Visitas a partir de {formatBRL(Number(price30))} · inclui até 2 gatos
           </p>
         </div>
@@ -92,13 +92,13 @@ function Home() {
       <section className="border-y border-border/70 bg-secondary/40 py-16">
         <div className="mx-auto max-w-6xl px-5">
           <p className="eyebrow">Como funciona</p>
-          <h2 className="mt-3 max-w-xl text-3xl sm:text-4xl">Três etapas, nenhuma surpresa</h2>
+          <h2 className="mt-3 max-w-xl">Três etapas, nenhuma surpresa</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {STEPS.map((step, index) => (
               <div key={step.title} className="surface-card p-7">
                 <span className="font-display text-3xl text-accent">0{index + 1}</span>
-                <h3 className="mt-3 text-xl">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                <h3 className="mt-3">{step.title}</h3>
+                <p className="mt-3 leading-relaxed text-muted-foreground">{step.body}</p>
               </div>
             ))}
           </div>
@@ -118,7 +118,7 @@ function Home() {
         </div>
         <div>
           <p className="eyebrow">Cuidado gato-específico</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">Gato não é cachorro pequeno</h2>
+          <h2 className="mt-3">Gato não é cachorro pequeno</h2>
           <ul className="mt-6 space-y-4 text-muted-foreground">
             <li>
               <strong className="text-foreground">Território preservado.</strong> Sem hotel, sem
@@ -143,7 +143,7 @@ function Home() {
       <section className="border-y border-border/70 bg-primary py-20 text-primary-foreground">
         <div className="mx-auto max-w-6xl px-5">
           <p className="eyebrow">Tutores atendidos</p>
-          <h2 className="mt-3 max-w-xl text-3xl text-primary-foreground sm:text-4xl">
+          <h2 className="mt-3 max-w-xl text-primary-foreground">
             Quem já viajou tranquilo
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -152,10 +152,10 @@ function Home() {
                 key={item.id}
                 className="rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 p-7"
               >
-                <p className="text-sm text-primary-foreground/60">
+                <p className="text-primary-foreground/60">
                   {"★".repeat(item.rating)}
                 </p>
-                <p className="mt-4 font-display text-lg leading-relaxed">“{item.content}”</p>
+                <p className="mt-4 font-display leading-relaxed text-3xl">“{item.content}”</p>
                 <footer className="mt-5 text-sm text-primary-foreground/70">
                   {item.author_name} · {item.cat_names} · {item.neighborhood}
                 </footer>
@@ -168,7 +168,7 @@ function Home() {
       <section className="mx-auto max-w-6xl px-5 py-20">
         <div className="surface-card flex flex-col items-start justify-between gap-6 p-10 sm:flex-row sm:items-center">
           <div>
-            <h2 className="text-3xl">Pronto para combinar as datas?</h2>
+            <h2>Pronto para combinar as datas?</h2>
             <p className="mt-2 max-w-lg text-muted-foreground">
               Cadastre você e seus gatos, escolha as visitas e veja o valor total calculado na hora,
               com adicionais de fim de semana e descontos de pacote já aplicados.
