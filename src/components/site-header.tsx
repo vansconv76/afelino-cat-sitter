@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/afelino-logo-completo-preto.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Início" },
   { to: "/servicos", label: "Serviços e preços" },
 ];
+
 
 export function SiteHeader() {
   const [email, setEmail] = useState<string | null>(null);
