@@ -155,7 +155,7 @@ function Home() {
                 <p className="text-primary-foreground/60">
                   {"★".repeat(item.rating)}
                 </p>
-                <p className="mt-4 font-display leading-relaxed text-3xl">“{item.content}”</p>
+                <p className="mt-4 font-display leading-relaxed text-xl">“{item.content}”</p>
                 <footer className="mt-5 text-sm text-primary-foreground/70">
                   {item.author_name} · {item.cat_names} · {item.neighborhood}
                 </footer>

@@ -98,7 +98,7 @@ function Servicos() {
             <article key={visit.key} className="surface-card flex flex-col p-7">
               <p className="eyebrow">Visita Felina</p>
               <h2 className="mt-2">{visit.duration}</h2>
-              <p className="mt-4 font-display text-3xl">{formatBRL(priceOf(visit.key, visit.fallback))}</p>
+              <p className="mt-4 price-figure">{formatBRL(priceOf(visit.key, visit.fallback))}</p>
               <p className="mt-1 text-muted-foreground">inclui até 2 gatos</p>
               <p className="mt-5 leading-relaxed text-muted-foreground">{visit.summary}</p>
               <ul className="mt-5 space-y-2 border-t border-border pt-5 text-sm">
@@ -123,7 +123,7 @@ function Servicos() {
           <article className="surface-card p-7">
             <p className="eyebrow">Serviço complementar</p>
             <h2 className="mt-2">Administração de medicamentos</h2>
-            <p className="mt-4 font-display text-3xl">
+            <p className="mt-4 price-figure">
               a partir de {formatBRL(medicationFee)}
               <span className="ml-2 align-middle text-sm font-normal text-muted-foreground">
                 por visita
@@ -147,7 +147,7 @@ function Servicos() {
           <article className="surface-card p-7">
             <p className="eyebrow">Serviço complementar</p>
             <h2 className="mt-2">Transporte veterinário</h2>
-            <p className="mt-4 font-display text-3xl">Sob consulta</p>
+            <p className="mt-4 price-figure">Sob consulta</p>
             <p className="mt-1 text-muted-foreground">sem preço fixo</p>
             <p className="mt-5 leading-relaxed text-muted-foreground">
               O valor é definido caso a caso, considerando a distância e a modalidade escolhida:
