@@ -30,8 +30,9 @@
  */
 
 @theme inline {
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "LT Asus", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "LT Asus", ui-sans-serif, system-ui, sans-serif;
+
 
   --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);
