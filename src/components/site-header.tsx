@@ -40,10 +40,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-primary/40 bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-        <Link to="/" className="flex items-center gap-3" aria-label="Afelino — início">
-          <span className="flex items-center rounded-xl bg-card px-3 py-2">
-            <img src={logoAsset.url} alt="Afelino cat sitter" className="h-10 w-auto" />
-          </span>
+        <Link to="/" className="flex items-center" aria-label="Afelino — início">
+          <img src={logoWhiteAsset.url} alt="Afelino cat sitter" className="h-14 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm md:flex">
