@@ -141,22 +141,22 @@
 
   /* Consistent type scale across every page */
   h1 {
-    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     line-height: 1.08;
   }
 
   h2 {
-    font-size: 1.75rem;
+    font-size: 2rem;
     line-height: 1.2;
   }
 
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 1.3;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 1.0625rem;
     line-height: 1.65;
   }
 
@@ -165,22 +165,31 @@
   caption,
   label {
     font-weight: 300;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 }
 
 @utility caption-light {
   font-weight: 300;
+  font-size: 0.9375rem;
   color: var(--color-muted-foreground);
 }
 
 @utility eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-accent);
+}
+
+/* Price / stat figure: one level below card titles */
+@utility price-figure {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.25;
 }
 
 
