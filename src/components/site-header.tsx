@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/afelino-logo-completo-preto.png.asset.json";
-import logoWhiteAsset from "@/assets/afelino-logo-completo-branco.png.asset.json";
+import logoWhiteAsset from "@/assets/afelino-logo-branco-v2.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Início" },
