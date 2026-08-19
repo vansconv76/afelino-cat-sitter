@@ -95,9 +95,10 @@ export const saveTestimonial = createServerFn({ method: "POST" })
     const { supabase, userId } = context;
     const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: userId, _role: "admin" });
     if (!isAdmin) throw new Error("Acesso restrito a administradores.");
-    const { error } = data.id
-      ? await supabase.from("testimonials").update(data).eq("id", data.id)
-      : await supabase.from("testimonials").insert(data);
+    const { id, ...fields } = data;
+    const { error } = id
+      ? await supabase.from("testimonials").update(fields).eq("id", id)
+      : await supabase.from("testimonials").insert(fields);
     if (error) throw new Error(error.message);
     return { ok: true };
   });

@@ -77,9 +77,10 @@ export const saveCat = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data: unknown) => catSchema.parse(data))
   .handler(async ({ data, context }) => {
-    const payload = { ...data, owner_id: context.userId };
-    const { error } = data.id
-      ? await context.supabase.from("cats").update(payload).eq("id", data.id)
+    const { id, ...fields } = data;
+    const payload = { ...fields, owner_id: context.userId };
+    const { error } = id
+      ? await context.supabase.from("cats").update(payload).eq("id", id)
       : await context.supabase.from("cats").insert(payload);
     if (error) throw new Error(error.message);
     return { ok: true };
