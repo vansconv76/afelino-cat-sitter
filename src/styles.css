@@ -2,7 +2,27 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "LT Asus";
+  src: url("/__l5e/assets-v1/aed7decc-7d99-46d7-badc-4ae22a635abe/afelino-fonte-ltasus-light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "LT Asus";
+  src: url("/__l5e/assets-v1/48142df8-b5d1-435c-b459-22aa84a053c8/afelino-fonte-ltasus-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "LT Asus";
+  src: url("/__l5e/assets-v1/5ce91849-5990-4a7a-9c4c-7f70bcfa582f/afelino-fonte-ltasus-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
+
 
 /*
  * Afelino design system — warm cream, pine green, terracotta.
