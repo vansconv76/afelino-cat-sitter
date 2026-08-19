@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/afelino-logo-completo-preto.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Início" },
   { to: "/servicos", label: "Serviços e preços" },
 ];
+
 
 export function SiteHeader() {
   const [email, setEmail] = useState<string | null>(null);
@@ -36,11 +38,12 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-        <Link to="/" className="flex items-baseline gap-2">
-          <span className="font-display text-2xl font-semibold tracking-tight">Afelino</span>
-          <span className="hidden text-xs text-muted-foreground sm:inline">cat sitter</span>
+    <header className="sticky top-0 z-40 border-b border-primary/40 bg-primary text-primary-foreground">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+        <Link to="/" className="flex items-center gap-3" aria-label="Afelino — início">
+          <span className="flex items-center rounded-xl bg-card px-3 py-2">
+            <img src={logoAsset.url} alt="Afelino cat sitter" className="h-10 w-auto" />
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm md:flex">
@@ -48,8 +51,8 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground font-medium" }}
+              className="text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+              activeProps={{ className: "text-primary-foreground font-bold" }}
             >
               {item.label}
             </Link>
@@ -59,15 +62,25 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           {email ? (
             <>
-              <Button asChild variant="ghost" size="sm">
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="text-primary-foreground hover:bg-primary-foreground/15 hover:text-primary-foreground"
+              >
                 <Link to="/painel">Meu painel</Link>
               </Button>
-              <Button variant="outline" size="sm" onClick={handleSignOut}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleSignOut}
+                className="border-primary-foreground/60 bg-transparent text-primary-foreground hover:bg-primary-foreground/15 hover:text-primary-foreground"
+              >
                 Sair
               </Button>
             </>
           ) : (
-            <Button asChild size="sm">
+            <Button asChild size="sm" variant="secondary">
               <Link to="/auth">Entrar</Link>
             </Button>
           )}
@@ -79,14 +92,15 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/70 bg-secondary/50">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-10 text-sm text-muted-foreground sm:flex-row sm:items-end sm:justify-between">
+    <footer className="border-t border-border bg-card">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 text-sm text-muted-foreground sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="font-display text-lg text-foreground">Afelino</p>
-          <p>Cat sitting em Alphaville e Tamboré.</p>
+          <img src={logoAsset.url} alt="Afelino cat sitter" className="h-12 w-auto" />
+          <p className="mt-3 font-light">Cat sitting em Alphaville e Tamboré.</p>
         </div>
-        <p>contato@afelino.com.br · WhatsApp (11) 90000-0000</p>
+        <p className="font-light">contato@afelino.com.br · WhatsApp (11) 90000-0000</p>
       </div>
     </footer>
   );
 }
+
