@@ -125,6 +125,7 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -134,19 +135,32 @@
   h4,
   blockquote {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
+
+  small,
+  figcaption,
+  caption,
+  label {
+    font-weight: 300;
+  }
+}
+
+@utility caption-light {
+  font-weight: 300;
+  color: var(--color-muted-foreground);
 }
 
 @utility eyebrow {
   font-family: var(--font-sans);
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
+
 
 @utility surface-card {
   background-color: var(--color-card);
