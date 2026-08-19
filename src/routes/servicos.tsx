@@ -85,10 +85,10 @@ function Servicos() {
 
       <section className="mx-auto max-w-6xl px-5 py-16">
         <p className="eyebrow">Serviços e preços</p>
-        <h1 className="mt-3 max-w-2xl text-4xl sm:text-5xl">
+        <h1 className="mt-3 max-w-2xl">
           Visita Felina, medicação e transporte
         </h1>
-        <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-5 max-w-2xl text-muted-foreground">
           Escolha a duração que combina com a rotina do seu gato. Todas as visitas acontecem na casa
           dele, em Alphaville ou Tamboré.
         </p>
@@ -97,10 +97,10 @@ function Servicos() {
           {VISITS.map((visit) => (
             <article key={visit.key} className="surface-card flex flex-col p-7">
               <p className="eyebrow">Visita Felina</p>
-              <h2 className="mt-2 text-2xl">{visit.duration}</h2>
-              <p className="mt-4 font-display text-4xl">{formatBRL(priceOf(visit.key, visit.fallback))}</p>
-              <p className="mt-1 text-sm text-muted-foreground">inclui até 2 gatos</p>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{visit.summary}</p>
+              <h2 className="mt-2">{visit.duration}</h2>
+              <p className="mt-4 font-display text-3xl">{formatBRL(priceOf(visit.key, visit.fallback))}</p>
+              <p className="mt-1 text-muted-foreground">inclui até 2 gatos</p>
+              <p className="mt-5 leading-relaxed text-muted-foreground">{visit.summary}</p>
               <ul className="mt-5 space-y-2 border-t border-border pt-5 text-sm">
                 {visit.includes.map((item) => (
                   <li key={item} className="flex gap-2">
@@ -115,21 +115,21 @@ function Servicos() {
           ))}
         </div>
 
-        <p className="mt-6 text-sm text-muted-foreground">
+        <p className="mt-6 text-muted-foreground">
           A partir do 3º gato, há um adicional por visita (consulte no momento do agendamento).
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <article className="surface-card p-7">
             <p className="eyebrow">Serviço complementar</p>
-            <h2 className="mt-2 text-2xl">Administração de medicamentos</h2>
+            <h2 className="mt-2">Administração de medicamentos</h2>
             <p className="mt-4 font-display text-3xl">
               a partir de {formatBRL(medicationFee)}
               <span className="ml-2 align-middle text-sm font-normal text-muted-foreground">
                 por visita
               </span>
             </p>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 leading-relaxed text-muted-foreground">
               Medicação oral ou tópica, incluindo colírio, aplicada durante a visita e registrada no
               relatório.
             </p>
@@ -146,10 +146,10 @@ function Servicos() {
 
           <article className="surface-card p-7">
             <p className="eyebrow">Serviço complementar</p>
-            <h2 className="mt-2 text-2xl">Transporte veterinário</h2>
+            <h2 className="mt-2">Transporte veterinário</h2>
             <p className="mt-4 font-display text-3xl">Sob consulta</p>
-            <p className="mt-1 text-sm text-muted-foreground">sem preço fixo</p>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-1 text-muted-foreground">sem preço fixo</p>
+            <p className="mt-5 leading-relaxed text-muted-foreground">
               O valor é definido caso a caso, considerando a distância e a modalidade escolhida:
             </p>
             <ul className="mt-5 space-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
@@ -160,7 +160,7 @@ function Servicos() {
           </article>
         </div>
 
-        <p className="mt-10 rounded-2xl border border-border bg-secondary/50 px-6 py-5 text-sm text-muted-foreground">
+        <p className="mt-10 rounded-2xl border border-border bg-secondary/50 px-6 py-5 text-muted-foreground">
           Valores sujeitos a adicionais conforme quantidade de gatos, dia da semana e forma de
           contratação — confira o cálculo completo ao agendar.
         </p>

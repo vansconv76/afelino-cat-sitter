@@ -169,13 +169,13 @@ function Agendar() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-12">
         <p className="eyebrow">Agendamento</p>
-        <h1 className="mt-3 text-4xl">Monte seu pacote de visitas</h1>
+        <h1 className="mt-3">Monte seu pacote de visitas</h1>
 
         {account.isLoading && <p className="mt-8 text-muted-foreground">Carregando...</p>}
 
         {account.data && cats.length === 0 && (
           <div className="surface-card mt-8 p-7">
-            <h2 className="text-xl">Cadastre seus gatos primeiro</h2>
+            <h2>Cadastre seus gatos primeiro</h2>
             <p className="mt-2 text-muted-foreground">
               Precisamos saber quem vamos cuidar para calcular o valor das visitas.
             </p>
@@ -189,7 +189,7 @@ function Agendar() {
           <form className="mt-8 grid gap-8 lg:grid-cols-[1.25fr_1fr]" onSubmit={handleSubmit}>
             <div className="space-y-6">
               <section className="surface-card p-7">
-                <h2 className="text-xl">1. Duração da visita</h2>
+                <h2>1. Duração da visita</h2>
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                   {DURATIONS.map((option) => {
                     const active = duration === option;
@@ -215,8 +215,8 @@ function Agendar() {
               </section>
 
               <section className="surface-card p-7">
-                <h2 className="text-xl">2. Gatos atendidos</h2>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <h2>2. Gatos atendidos</h2>
+                <p className="mt-1 text-muted-foreground">
                   A visita inclui até 2 gatos. A partir do 3º há adicional por visita.
                 </p>
                 <ul className="mt-4 space-y-2">
@@ -246,7 +246,7 @@ function Agendar() {
               </section>
 
               <section className="surface-card p-7">
-                <h2 className="text-xl">3. Datas e horários</h2>
+                <h2>3. Datas e horários</h2>
                 <div className="mt-4 space-y-3">
                   {visits.map((visit, index) => (
                     <div key={index} className="flex flex-wrap items-end gap-3">
@@ -305,12 +305,12 @@ function Agendar() {
               </section>
 
               <section className="surface-card space-y-5 p-7">
-                <h2 className="text-xl">4. Detalhes</h2>
+                <h2>4. Detalhes</h2>
 
                 <div className="flex items-center justify-between rounded-xl border border-border px-4 py-3">
                   <div>
                     <Label htmlFor="medication">Administração de medicamentos</Label>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       Oral ou tópico/colírio · adicional por visita
                     </p>
                   </div>
@@ -325,7 +325,7 @@ function Agendar() {
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="previsit">Incluir pré-visita</Label>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-sm text-muted-foreground">
                         Conhecer a casa e a rotina antes das visitas
                       </p>
                     </div>
@@ -335,7 +335,7 @@ function Agendar() {
                     <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
                       <div>
                         <Label htmlFor="previsit-before">Antes da contratação confirmada</Label>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                           Cobrada e abatida da primeira contratação. Depois do contrato confirmado é
                           gratuita.
                         </p>
@@ -373,7 +373,7 @@ function Agendar() {
                       ))}
                     </SelectContent>
                   </Select>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
                     Atendemos somente Alphaville e Tamboré.
                   </p>
                 </div>
@@ -393,7 +393,7 @@ function Agendar() {
 
             <aside className="lg:sticky lg:top-24 lg:self-start">
               <div className="surface-card p-7">
-                <h2 className="text-xl">Resumo do orçamento</h2>
+                <h2>Resumo do orçamento</h2>
                 <dl className="mt-5 space-y-2 text-sm">
                   <div className="flex justify-between">
                     <dt className="text-muted-foreground">Visita de {duration} min</dt>
@@ -455,7 +455,7 @@ function Agendar() {
                 <Button type="submit" size="lg" className="mt-6 w-full" disabled={busy}>
                   {busy ? "Enviando..." : "Confirmar reserva"}
                 </Button>
-                <p className="mt-3 text-xs text-muted-foreground">
+                <p className="mt-3 text-sm text-muted-foreground">
                   Valores sujeitos a adicionais conforme quantidade de gatos, dia da semana e forma de
                   contratação. A reserva fica aguardando nossa confirmação.
                 </p>

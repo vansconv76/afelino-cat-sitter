@@ -103,8 +103,8 @@ function AuthPage() {
       <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-5 py-16">
         {checkEmail ? (
           <div className="surface-card p-8 text-center">
-            <h1 className="text-2xl">Confirme seu e-mail</h1>
-            <p className="mt-3 text-sm text-muted-foreground">
+            <h1>Confirme seu e-mail</h1>
+            <p className="mt-3 text-muted-foreground">
               Enviamos um link de confirmação para <strong>{form.email}</strong>. Depois de
               confirmar, volte aqui e entre com sua senha.
             </p>
@@ -115,7 +115,7 @@ function AuthPage() {
         ) : (
           <div className="surface-card p-8">
             <p className="eyebrow">Área do tutor</p>
-            <h1 className="mt-3 text-3xl">
+            <h1 className="mt-3">
               {mode === "signin" ? "Entrar na sua conta" : "Criar conta de tutor"}
             </h1>
 
@@ -173,7 +173,7 @@ function AuthPage() {
               </Button>
             </form>
 
-            <p className="mt-6 text-sm text-muted-foreground">
+            <p className="mt-6 text-muted-foreground">
               {mode === "signin" ? "Ainda não tem conta?" : "Já é tutor cadastrado?"}{" "}
               <button
                 type="button"
@@ -183,7 +183,7 @@ function AuthPage() {
                 {mode === "signin" ? "Criar conta" : "Entrar"}
               </button>
             </p>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-muted-foreground">
               <Link to="/servicos" className="underline-offset-4 hover:underline">
                 Ver preços antes de decidir
               </Link>
