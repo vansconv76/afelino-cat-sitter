@@ -3,13 +3,11 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { getMyAccount, saveProfile, saveCat, deleteCat, cancelBooking } from "@/lib/app.functions";
+import { getMyAccount, saveProfile, cancelBooking } from "@/lib/app.functions";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -31,31 +29,11 @@ export const Route = createFileRoute("/_authenticated/painel")({
   component: Painel,
 });
 
-type CatForm = {
-  id?: string;
-  name: string;
-  age_years: string;
-  temperament: string;
-  needs_medication: boolean;
-  medication_notes: string;
-  notes: string;
-};
-
-const emptyCat: CatForm = {
-  name: "",
-  age_years: "",
-  temperament: "",
-  needs_medication: false,
-  medication_notes: "",
-  notes: "",
-};
 
 function Painel() {
   const queryClient = useQueryClient();
   const fetchAccount = useServerFn(getMyAccount);
   const submitProfile = useServerFn(saveProfile);
-  const submitCat = useServerFn(saveCat);
-  const removeCat = useServerFn(deleteCat);
   const cancel = useServerFn(cancelBooking);
 
   const account = useQuery({ queryKey: ["account"], queryFn: () => fetchAccount() });
@@ -66,7 +44,6 @@ function Painel() {
     address: "",
     neighborhood: "Alphaville",
   });
-  const [catForm, setCatForm] = useState<CatForm>(emptyCat);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
@@ -104,34 +81,6 @@ function Painel() {
     }
   }
 
-  async function onSaveCat(event: React.FormEvent) {
-    event.preventDefault();
-    if (catForm.name.trim().length < 1) {
-      toast.error("Informe o nome do gato.");
-      return;
-    }
-    setBusy(true);
-    try {
-      await submitCat({
-        data: {
-          ...(catForm.id ? { id: catForm.id } : {}),
-          name: catForm.name.trim(),
-          age_years: catForm.age_years === "" ? null : Number(catForm.age_years),
-          temperament: catForm.temperament.trim(),
-          needs_medication: catForm.needs_medication,
-          medication_notes: catForm.medication_notes.trim(),
-          notes: catForm.notes.trim(),
-        },
-      });
-      toast.success(catForm.id ? "Gato atualizado." : "Gato cadastrado.");
-      setCatForm(emptyCat);
-      refresh();
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Não foi possível salvar o gato.");
-    } finally {
-      setBusy(false);
-    }
-  }
 
   const cats = account.data?.cats ?? [];
   const bookings = account.data?.bookings ?? [];
