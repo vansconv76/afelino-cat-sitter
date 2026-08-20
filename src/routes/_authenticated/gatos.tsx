@@ -36,7 +36,7 @@ export const Route = createFileRoute("/_authenticated/gatos")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: CatsPage;
+  component: CatsPage,
 });
 
 type Sex = "macho" | "femea" | "nao_informado";
