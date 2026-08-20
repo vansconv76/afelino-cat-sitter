@@ -118,36 +118,69 @@ export type Database = {
       cats: {
         Row: {
           age_years: number | null
+          breed: string
           created_at: string
+          energy_level: string
+          escape_risk: boolean
+          hides: boolean
           id: string
+          lives_with_other_pets: boolean
           medication_notes: string
           name: string
           needs_medication: boolean
+          neutered: boolean
           notes: string
           owner_id: string
+          photo_path: string
+          sex: string
+          social_cats: boolean
+          social_people: boolean
           temperament: string
+          weight_kg: number | null
         }
         Insert: {
           age_years?: number | null
+          breed?: string
           created_at?: string
+          energy_level?: string
+          escape_risk?: boolean
+          hides?: boolean
           id?: string
+          lives_with_other_pets?: boolean
           medication_notes?: string
           name: string
           needs_medication?: boolean
+          neutered?: boolean
           notes?: string
           owner_id: string
+          photo_path?: string
+          sex?: string
+          social_cats?: boolean
+          social_people?: boolean
           temperament?: string
+          weight_kg?: number | null
         }
         Update: {
           age_years?: number | null
+          breed?: string
           created_at?: string
+          energy_level?: string
+          escape_risk?: boolean
+          hides?: boolean
           id?: string
+          lives_with_other_pets?: boolean
           medication_notes?: string
           name?: string
           needs_medication?: boolean
+          neutered?: boolean
           notes?: string
           owner_id?: string
+          photo_path?: string
+          sex?: string
+          social_cats?: boolean
+          social_people?: boolean
           temperament?: string
+          weight_kg?: number | null
         }
         Relationships: []
       }

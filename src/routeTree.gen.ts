@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAgendarRouteImport } from './routes/_authenticated/agendar'
+import { Route as AuthenticatedGatosRouteImport } from './routes/_authenticated/gatos'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
 
 const IndexRoute = IndexRouteImport.update({
@@ -46,6 +47,11 @@ const AuthenticatedAgendarRoute = AuthenticatedAgendarRouteImport.update({
   path: '/agendar',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedGatosRoute = AuthenticatedGatosRouteImport.update({
+  id: '/gatos',
+  path: '/gatos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPainelRoute = AuthenticatedPainelRouteImport.update({
   id: '/painel',
   path: '/painel',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/servicos': typeof ServicosRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/agendar': typeof AuthenticatedAgendarRoute
+  '/gatos': typeof AuthenticatedGatosRoute
   '/painel': typeof AuthenticatedPainelRoute
 }
 export interface FileRoutesByTo {
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/servicos': typeof ServicosRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/agendar': typeof AuthenticatedAgendarRoute
+  '/gatos': typeof AuthenticatedGatosRoute
   '/painel': typeof AuthenticatedPainelRoute
 }
 export interface FileRoutesById {
@@ -76,13 +84,15 @@ export interface FileRoutesById {
   '/servicos': typeof ServicosRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/agendar': typeof AuthenticatedAgendarRoute
+  '/_authenticated/gatos': typeof AuthenticatedGatosRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/servicos' | '/admin' | '/agendar' | '/painel'
+  fullPaths:
+    '/' | '/auth' | '/servicos' | '/admin' | '/agendar' | '/gatos' | '/painel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/servicos' | '/admin' | '/agendar' | '/painel'
+  to: '/' | '/auth' | '/servicos' | '/admin' | '/agendar' | '/gatos' | '/painel'
   id:
     | '__root__'
     | '/'
@@ -91,6 +101,7 @@ export interface FileRouteTypes {
     | '/servicos'
     | '/_authenticated/admin'
     | '/_authenticated/agendar'
+    | '/_authenticated/gatos'
     | '/_authenticated/painel'
   fileRoutesById: FileRoutesById
 }
@@ -145,6 +156,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAgendarRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/gatos': {
+      id: '/_authenticated/gatos'
+      path: '/gatos'
+      fullPath: '/gatos'
+      preLoaderRoute: typeof AuthenticatedGatosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/painel': {
       id: '/_authenticated/painel'
       path: '/painel'
@@ -158,12 +176,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedAgendarRoute: typeof AuthenticatedAgendarRoute
+  AuthenticatedGatosRoute: typeof AuthenticatedGatosRoute
   AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedAgendarRoute: AuthenticatedAgendarRoute,
+  AuthenticatedGatosRoute: AuthenticatedGatosRoute,
   AuthenticatedPainelRoute: AuthenticatedPainelRoute,
 }
 

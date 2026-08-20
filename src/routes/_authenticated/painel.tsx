@@ -3,13 +3,11 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { getMyAccount, saveProfile, saveCat, deleteCat, cancelBooking } from "@/lib/app.functions";
+import { getMyAccount, saveProfile, cancelBooking } from "@/lib/app.functions";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -31,31 +29,11 @@ export const Route = createFileRoute("/_authenticated/painel")({
   component: Painel,
 });
 
-type CatForm = {
-  id?: string;
-  name: string;
-  age_years: string;
-  temperament: string;
-  needs_medication: boolean;
-  medication_notes: string;
-  notes: string;
-};
-
-const emptyCat: CatForm = {
-  name: "",
-  age_years: "",
-  temperament: "",
-  needs_medication: false,
-  medication_notes: "",
-  notes: "",
-};
 
 function Painel() {
   const queryClient = useQueryClient();
   const fetchAccount = useServerFn(getMyAccount);
   const submitProfile = useServerFn(saveProfile);
-  const submitCat = useServerFn(saveCat);
-  const removeCat = useServerFn(deleteCat);
   const cancel = useServerFn(cancelBooking);
 
   const account = useQuery({ queryKey: ["account"], queryFn: () => fetchAccount() });
@@ -66,7 +44,6 @@ function Painel() {
     address: "",
     neighborhood: "Alphaville",
   });
-  const [catForm, setCatForm] = useState<CatForm>(emptyCat);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
@@ -104,34 +81,6 @@ function Painel() {
     }
   }
 
-  async function onSaveCat(event: React.FormEvent) {
-    event.preventDefault();
-    if (catForm.name.trim().length < 1) {
-      toast.error("Informe o nome do gato.");
-      return;
-    }
-    setBusy(true);
-    try {
-      await submitCat({
-        data: {
-          ...(catForm.id ? { id: catForm.id } : {}),
-          name: catForm.name.trim(),
-          age_years: catForm.age_years === "" ? null : Number(catForm.age_years),
-          temperament: catForm.temperament.trim(),
-          needs_medication: catForm.needs_medication,
-          medication_notes: catForm.medication_notes.trim(),
-          notes: catForm.notes.trim(),
-        },
-      });
-      toast.success(catForm.id ? "Gato atualizado." : "Gato cadastrado.");
-      setCatForm(emptyCat);
-      refresh();
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Não foi possível salvar o gato.");
-    } finally {
-      setBusy(false);
-    }
-  }
 
   const cats = account.data?.cats ?? [];
   const bookings = account.data?.bookings ?? [];
@@ -216,11 +165,21 @@ function Painel() {
             </section>
 
             <section className="surface-card p-7">
-              <h2>Meus gatos</h2>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2>Meus gatos</h2>
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/gatos">Gerenciar gatos</Link>
+                </Button>
+              </div>
               {cats.length === 0 ? (
-                <p className="mt-3 text-muted-foreground">
-                  Nenhum gato cadastrado ainda. Cadastre ao menos um para agendar visitas.
-                </p>
+                <>
+                  <p className="mt-3 text-muted-foreground">
+                    Nenhum gato cadastrado ainda. Cadastre ao menos um para agendar visitas.
+                  </p>
+                  <Button asChild className="mt-5">
+                    <Link to="/gatos">Cadastrar gato</Link>
+                  </Button>
+                </>
               ) : (
                 <ul className="mt-5 space-y-3">
                   {cats.map((cat) => (
@@ -236,125 +195,17 @@ function Painel() {
                           )}
                         </p>
                         <p className="text-muted-foreground">
-                          {cat.temperament || "Temperamento não informado"}
+                          {cat.breed || cat.temperament || "Ficha básica"}
                           {cat.needs_medication ? " · usa medicação" : ""}
                         </p>
                       </div>
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() =>
-                            setCatForm({
-                              id: cat.id,
-                              name: cat.name,
-                              age_years: cat.age_years == null ? "" : String(cat.age_years),
-                              temperament: cat.temperament ?? "",
-                              needs_medication: cat.needs_medication ?? false,
-                              medication_notes: cat.medication_notes ?? "",
-                              notes: cat.notes ?? "",
-                            })
-                          }
-                        >
-                          Editar
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={async () => {
-                            await removeCat({ data: { id: cat.id } });
-                            toast.success("Gato removido.");
-                            refresh();
-                          }}
-                        >
-                          Remover
-                        </Button>
-                      </div>
+                      <Button asChild size="sm" variant="ghost">
+                        <Link to="/gatos">Editar</Link>
+                      </Button>
                     </li>
                   ))}
                 </ul>
               )}
-
-              <form className="mt-7 space-y-4 border-t border-border pt-6" onSubmit={onSaveCat}>
-                <h3>{catForm.id ? "Editar gato" : "Cadastrar gato"}</h3>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="cat_name">Nome</Label>
-                    <Input
-                      id="cat_name"
-                      maxLength={60}
-                      value={catForm.name}
-                      onChange={(e) => setCatForm({ ...catForm, name: e.target.value })}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="cat_age">Idade (anos)</Label>
-                    <Input
-                      id="cat_age"
-                      type="number"
-                      min={0}
-                      max={30}
-                      step="0.5"
-                      value={catForm.age_years}
-                      onChange={(e) => setCatForm({ ...catForm, age_years: e.target.value })}
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="cat_temper">Temperamento</Label>
-                  <Input
-                    id="cat_temper"
-                    maxLength={120}
-                    placeholder="Sociável, medroso, esconde-se..."
-                    value={catForm.temperament}
-                    onChange={(e) => setCatForm({ ...catForm, temperament: e.target.value })}
-                  />
-                </div>
-                <div className="flex items-center justify-between rounded-xl border border-border px-4 py-3">
-                  <div>
-                    <Label htmlFor="cat_med">Usa medicação</Label>
-                    <p className="text-sm text-muted-foreground">Oral ou tópica</p>
-                  </div>
-                  <Switch
-                    id="cat_med"
-                    checked={catForm.needs_medication}
-                    onCheckedChange={(checked) =>
-                      setCatForm({ ...catForm, needs_medication: checked })
-                    }
-                  />
-                </div>
-                {catForm.needs_medication && (
-                  <div className="space-y-2">
-                    <Label htmlFor="cat_med_notes">Detalhes da medicação</Label>
-                    <Textarea
-                      id="cat_med_notes"
-                      maxLength={400}
-                      value={catForm.medication_notes}
-                      onChange={(e) => setCatForm({ ...catForm, medication_notes: e.target.value })}
-                    />
-                  </div>
-                )}
-                <div className="space-y-2">
-                  <Label htmlFor="cat_notes">Observações</Label>
-                  <Textarea
-                    id="cat_notes"
-                    maxLength={600}
-                    placeholder="Ração, esconderijos, o que ele odeia..."
-                    value={catForm.notes}
-                    onChange={(e) => setCatForm({ ...catForm, notes: e.target.value })}
-                  />
-                </div>
-                <div className="flex gap-2">
-                  <Button type="submit" disabled={busy}>
-                    {catForm.id ? "Salvar alterações" : "Cadastrar gato"}
-                  </Button>
-                  {catForm.id && (
-                    <Button type="button" variant="ghost" onClick={() => setCatForm(emptyCat)}>
-                      Cancelar
-                    </Button>
-                  )}
-                </div>
-              </form>
             </section>
           </div>
         )}
