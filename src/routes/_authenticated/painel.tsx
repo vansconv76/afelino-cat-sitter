@@ -216,11 +216,21 @@ function Painel() {
             </section>
 
             <section className="surface-card p-7">
-              <h2>Meus gatos</h2>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2>Meus gatos</h2>
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/gatos">Gerenciar gatos</Link>
+                </Button>
+              </div>
               {cats.length === 0 ? (
-                <p className="mt-3 text-muted-foreground">
-                  Nenhum gato cadastrado ainda. Cadastre ao menos um para agendar visitas.
-                </p>
+                <>
+                  <p className="mt-3 text-muted-foreground">
+                    Nenhum gato cadastrado ainda. Cadastre ao menos um para agendar visitas.
+                  </p>
+                  <Button asChild className="mt-5">
+                    <Link to="/gatos">Cadastrar gato</Link>
+                  </Button>
+                </>
               ) : (
                 <ul className="mt-5 space-y-3">
                   {cats.map((cat) => (
@@ -236,125 +246,17 @@ function Painel() {
                           )}
                         </p>
                         <p className="text-muted-foreground">
-                          {cat.temperament || "Temperamento não informado"}
+                          {cat.breed || cat.temperament || "Ficha básica"}
                           {cat.needs_medication ? " · usa medicação" : ""}
                         </p>
                       </div>
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() =>
-                            setCatForm({
-                              id: cat.id,
-                              name: cat.name,
-                              age_years: cat.age_years == null ? "" : String(cat.age_years),
-                              temperament: cat.temperament ?? "",
-                              needs_medication: cat.needs_medication ?? false,
-                              medication_notes: cat.medication_notes ?? "",
-                              notes: cat.notes ?? "",
-                            })
-                          }
-                        >
-                          Editar
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={async () => {
-                            await removeCat({ data: { id: cat.id } });
-                            toast.success("Gato removido.");
-                            refresh();
-                          }}
-                        >
-                          Remover
-                        </Button>
-                      </div>
+                      <Button asChild size="sm" variant="ghost">
+                        <Link to="/gatos">Editar</Link>
+                      </Button>
                     </li>
                   ))}
                 </ul>
               )}
-
-              <form className="mt-7 space-y-4 border-t border-border pt-6" onSubmit={onSaveCat}>
-                <h3>{catForm.id ? "Editar gato" : "Cadastrar gato"}</h3>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="cat_name">Nome</Label>
-                    <Input
-                      id="cat_name"
-                      maxLength={60}
-                      value={catForm.name}
-                      onChange={(e) => setCatForm({ ...catForm, name: e.target.value })}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="cat_age">Idade (anos)</Label>
-                    <Input
-                      id="cat_age"
-                      type="number"
-                      min={0}
-                      max={30}
-                      step="0.5"
-                      value={catForm.age_years}
-                      onChange={(e) => setCatForm({ ...catForm, age_years: e.target.value })}
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="cat_temper">Temperamento</Label>
-                  <Input
-                    id="cat_temper"
-                    maxLength={120}
-                    placeholder="Sociável, medroso, esconde-se..."
-                    value={catForm.temperament}
-                    onChange={(e) => setCatForm({ ...catForm, temperament: e.target.value })}
-                  />
-                </div>
-                <div className="flex items-center justify-between rounded-xl border border-border px-4 py-3">
-                  <div>
-                    <Label htmlFor="cat_med">Usa medicação</Label>
-                    <p className="text-sm text-muted-foreground">Oral ou tópica</p>
-                  </div>
-                  <Switch
-                    id="cat_med"
-                    checked={catForm.needs_medication}
-                    onCheckedChange={(checked) =>
-                      setCatForm({ ...catForm, needs_medication: checked })
-                    }
-                  />
-                </div>
-                {catForm.needs_medication && (
-                  <div className="space-y-2">
-                    <Label htmlFor="cat_med_notes">Detalhes da medicação</Label>
-                    <Textarea
-                      id="cat_med_notes"
-                      maxLength={400}
-                      value={catForm.medication_notes}
-                      onChange={(e) => setCatForm({ ...catForm, medication_notes: e.target.value })}
-                    />
-                  </div>
-                )}
-                <div className="space-y-2">
-                  <Label htmlFor="cat_notes">Observações</Label>
-                  <Textarea
-                    id="cat_notes"
-                    maxLength={600}
-                    placeholder="Ração, esconderijos, o que ele odeia..."
-                    value={catForm.notes}
-                    onChange={(e) => setCatForm({ ...catForm, notes: e.target.value })}
-                  />
-                </div>
-                <div className="flex gap-2">
-                  <Button type="submit" disabled={busy}>
-                    {catForm.id ? "Salvar alterações" : "Cadastrar gato"}
-                  </Button>
-                  {catForm.id && (
-                    <Button type="button" variant="ghost" onClick={() => setCatForm(emptyCat)}>
-                      Cancelar
-                    </Button>
-                  )}
-                </div>
-              </form>
             </section>
           </div>
         )}
