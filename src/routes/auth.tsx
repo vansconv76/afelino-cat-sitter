@@ -52,6 +52,19 @@ function AuthPage() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  async function handleGoogle() {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: window.location.origin },
+    });
+    if (error) {
+      toast.error("Não foi possível entrar com o Google. Tente novamente.");
+      setLoading(false);
+    }
+  }
+
+
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setLoading(true);
@@ -119,7 +132,42 @@ function AuthPage() {
               {mode === "signin" ? "Entrar na sua conta" : "Criar conta de tutor"}
             </h1>
 
-            <form className="mt-7 space-y-4" onSubmit={handleSubmit}>
+            <Button
+              type="button"
+              variant="outline"
+              className="mt-7 w-full"
+              disabled={loading}
+              onClick={handleGoogle}
+            >
+              <svg className="mr-2 h-4 w-4" viewBox="0 0 48 48" aria-hidden="true">
+                <path
+                  fill="#EA4335"
+                  d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.2 17.6 9.5 24 9.5z"
+                />
+                <path
+                  fill="#4285F4"
+                  d="M46.5 24.5c0-1.6-.1-2.8-.4-4.1H24v8.4h12.7c-.3 2.1-1.6 5.2-4.7 7.3l7.6 5.9c4.5-4.2 6.9-10.3 6.9-17.5z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M10.4 28.7A14.6 14.6 0 0 1 9.6 24c0-1.6.3-3.2.8-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.8-6.1z"
+                />
+                <path
+                  fill="#34A853"
+                  d="M24 48c6.2 0 11.5-2 15.6-5.9l-7.6-5.9c-2 1.4-4.8 2.4-8 2.4-6.4 0-11.7-3.7-13.6-9.9l-7.8 6.1C6.5 42.6 14.6 48 24 48z"
+                />
+              </svg>
+              Continuar com Google
+            </Button>
+
+            <div className="mt-6 flex items-center gap-3">
+              <span className="h-px flex-1 bg-border" />
+              <span className="caption-light text-muted-foreground">ou com e-mail</span>
+              <span className="h-px flex-1 bg-border" />
+            </div>
+
+            <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+
               {mode === "signup" && (
                 <>
                   <div className="space-y-2">
