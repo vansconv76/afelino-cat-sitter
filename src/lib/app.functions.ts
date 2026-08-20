@@ -18,6 +18,17 @@ const catSchema = z.object({
   needs_medication: z.boolean(),
   medication_notes: z.string().trim().max(400),
   notes: z.string().trim().max(600),
+  photo_path: z.string().trim().max(300).default(""),
+  breed: z.string().trim().max(80).default(""),
+  sex: z.enum(["macho", "femea", "nao_informado"]).default("nao_informado"),
+  weight_kg: z.number().min(0).max(30).nullable().default(null),
+  neutered: z.boolean().default(false),
+  energy_level: z.enum(["baixo", "medio", "alto"]).default("medio"),
+  social_people: z.boolean().default(true),
+  social_cats: z.boolean().default(true),
+  lives_with_other_pets: z.boolean().default(false),
+  hides: z.boolean().default(false),
+  escape_risk: z.boolean().default(false),
 });
 
 const bookingSchema = z.object({
