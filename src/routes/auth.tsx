@@ -52,6 +52,19 @@ function AuthPage() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  async function handleGoogle() {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: window.location.origin },
+    });
+    if (error) {
+      toast.error("Não foi possível entrar com o Google. Tente novamente.");
+      setLoading(false);
+    }
+  }
+
+
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setLoading(true);
