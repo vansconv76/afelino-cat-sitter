@@ -2,37 +2,17 @@
 @source "../src";
 @import "tw-animate-css";
 
-@font-face {
-  font-family: "LT Asus";
-  src: url("/__l5e/assets-v1/aed7decc-7d99-46d7-badc-4ae22a635abe/afelino-fonte-ltasus-light.ttf") format("truetype");
-  font-weight: 300;
-  font-display: swap;
-}
-@font-face {
-  font-family: "LT Asus";
-  src: url("/__l5e/assets-v1/48142df8-b5d1-435c-b459-22aa84a053c8/afelino-fonte-ltasus-regular.ttf") format("truetype");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "LT Asus";
-  src: url("/__l5e/assets-v1/5ce91849-5990-4a7a-9c4c-7f70bcfa582f/afelino-fonte-ltasus-bold.ttf") format("truetype");
-  font-weight: 700;
-  font-display: swap;
-}
-
 @custom-variant dark (&:is(.dark *));
 
-
 /*
- * Afelino design system — warm cream, pine green, terracotta.
- * All colors are oklch semantic tokens. Never hardcode colors in components.
+ * Afelino design system — creme, verde-petróleo, turquesa, laranja, vinho.
+ * All colors and fonts are semantic tokens. Never hardcode colors in components.
  */
 
 @theme inline {
-  --font-display: "LT Asus", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "LT Asus", ui-sans-serif, system-ui, sans-serif;
-
+  --font-display: "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: Verdana, Geneva, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
 
   --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);
@@ -62,8 +42,22 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
+
+  /* Brand palette */
   --color-cream: var(--cream);
   --color-ink: var(--ink);
+  --color-petrol: var(--petrol);
+  --color-petrol-foreground: var(--petrol-foreground);
+  --color-turquoise: var(--turquoise);
+  --color-turquoise-foreground: var(--turquoise-foreground);
+  --color-orange: var(--brand-orange);
+  --color-orange-foreground: var(--brand-orange-foreground);
+  --color-wine: var(--wine);
+  --color-wine-foreground: var(--wine-foreground);
+  --color-pink: var(--pink);
+  --color-pink-foreground: var(--pink-foreground);
+  --color-gray-light: var(--gray-light);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -73,48 +67,63 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --shadow-soft: 0 1px 2px oklch(0.26 0.035 158 / 0.06), 0 12px 32px -18px oklch(0.26 0.035 158 / 0.35);
-  --shadow-lift: 0 2px 4px oklch(0.26 0.035 158 / 0.05), 0 24px 60px -28px oklch(0.26 0.035 158 / 0.4);
+  --shadow-soft: 0 1px 2px rgb(0 71 71 / 0.08), 0 12px 32px -18px rgb(0 71 71 / 0.35);
+  --shadow-lift: 0 2px 4px rgb(0 71 71 / 0.07), 0 24px 60px -28px rgb(0 71 71 / 0.4);
 }
 
 :root {
   --radius: 1rem;
-  /* #F7EFDE */
-  --background: oklch(0.955 0.024 85);
-  /* #000000 */
-  --foreground: oklch(0 0 0);
-  --cream: oklch(0.955 0.024 85);
-  --ink: oklch(0 0 0);
-  /* #FFFFFF */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0 0 0);
-  /* #1D7A83 */
-  --primary: oklch(0.494 0.078 205);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.925 0.03 85);
-  --secondary-foreground: oklch(0.2 0 0);
-  --muted: oklch(0.935 0.026 85);
-  --muted-foreground: oklch(0.45 0.008 85);
-  /* #C97A1F */
-  --accent: oklch(0.622 0.129 62);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.53 0.19 27);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.875 0.028 85);
-  --input: oklch(0.875 0.028 85);
-  --ring: oklch(0.494 0.078 205);
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0 0 0);
-  --sidebar-primary: oklch(0.494 0.078 205);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.925 0.03 85);
-  --sidebar-accent-foreground: oklch(0.2 0 0);
-  --sidebar-border: oklch(0.875 0.028 85);
-  --sidebar-ring: oklch(0.494 0.078 205);
-}
 
+  /* Base / fundo */
+  --background: #faf1d0;
+  --cream: #faf1d0;
+  --gray-light: #d4d4d4;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+
+  /* Texto */
+  --foreground: #000000;
+  --ink: #000000;
+
+  /* Marca */
+  --petrol: #004747;
+  --petrol-foreground: #ffffff;
+  --turquoise: #00adad;
+  --turquoise-foreground: #000000;
+  --brand-orange: #ff8b0f;
+  --brand-orange-foreground: #000000;
+  --wine: #870044;
+  --wine-foreground: #ffffff;
+  --pink: #faa5cf;
+  --pink-foreground: #000000;
+
+  /* Papéis semânticos (contraste validado) */
+  --primary: #004747;
+  --primary-foreground: #ffffff;
+  --secondary: #d4d4d4;
+  --secondary-foreground: #000000;
+  --muted: #d4d4d4;
+  --muted-foreground: #2b2b2b;
+  --accent: #ff8b0f;
+  --accent-foreground: #000000;
+  --destructive: #870044;
+  --destructive-foreground: #ffffff;
+
+  --border: #c9c9c9;
+  --input: #b8b8b8;
+  --ring: #00adad;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #004747;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d4d4d4;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #c9c9c9;
+  --sidebar-ring: #00adad;
+}
 
 @layer base {
   * {
@@ -132,46 +141,53 @@
   h1,
   h2,
   h3,
-  h4,
-  blockquote {
+  h4 {
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.01em;
   }
 
+  blockquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+
   /* Consistent type scale across every page */
   h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    line-height: 1.08;
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    line-height: 1.1;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.875rem;
     line-height: 1.2;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
     line-height: 1.3;
   }
 
   p {
-    font-size: 1.0625rem;
-    line-height: 1.65;
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
   small,
   figcaption,
   caption,
   label {
-    font-weight: 300;
-    font-size: 0.9375rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.875rem;
   }
 }
 
+/* Texto de apoio com ênfase */
 @utility caption-light {
-  font-weight: 300;
-  font-size: 0.9375rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.875rem;
   color: var(--color-muted-foreground);
 }
 
@@ -179,9 +195,17 @@
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-wine);
+}
+
+/* Destaques / citações — nunca em botões */
+@utility quote-highlight {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.6;
 }
 
 /* Price / stat figure: one level below card titles */
@@ -191,7 +215,6 @@
   font-size: 1.25rem;
   line-height: 1.25;
 }
-
 
 @utility surface-card {
   background-color: var(--color-card);
