@@ -200,6 +200,15 @@
   color: var(--color-wine);
 }
 
+@utility eyebrow-light {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-foreground);
+}
+
 /* Destaques / citações — nunca em botões */
 @utility quote-highlight {
   font-family: var(--font-serif);
@@ -219,6 +228,20 @@
 @utility surface-card {
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility surface-card-gray {
+  background-color: var(--color-gray-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility surface-card-pink {
+  background-color: var(--color-pink);
+  border: 1px solid var(--color-pink);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-soft);
 }

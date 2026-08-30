@@ -95,7 +95,7 @@ function Home() {
           <h2 className="mt-3 max-w-xl">Três etapas, nenhuma surpresa</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {STEPS.map((step, index) => (
-              <div key={step.title} className="surface-card p-7">
+              <div key={step.title} className="surface-card-pink p-7">
                 <span className="font-display text-3xl text-accent">0{index + 1}</span>
                 <h3 className="mt-3">{step.title}</h3>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{step.body}</p>
@@ -142,7 +142,7 @@ function Home() {
 
       <section className="border-y border-border/70 bg-primary py-20 text-primary-foreground">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="eyebrow">Tutores atendidos</p>
+          <p className="eyebrow-light">Tutores atendidos</p>
           <h2 className="mt-3 max-w-xl text-primary-foreground">
             Quem já viajou tranquilo
           </h2>
@@ -166,7 +166,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <div className="surface-card flex flex-col items-start justify-between gap-6 p-10 sm:flex-row sm:items-center">
+        <div className="surface-card-gray flex flex-col items-start justify-between gap-6 p-10 sm:flex-row sm:items-center">
           <div>
             <h2>Pronto para combinar as datas?</h2>
             <p className="mt-2 max-w-lg text-muted-foreground">
