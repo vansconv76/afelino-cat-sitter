@@ -89,16 +89,16 @@ function Home() {
         </div>
       </section>
 
-      <section className="border-y border-border/70 bg-secondary/40 py-16">
+      <section className="border-y border-border/70 bg-cream py-16">
         <div className="mx-auto max-w-6xl px-5">
           <p className="eyebrow">Como funciona</p>
           <h2 className="mt-3 max-w-xl">Três etapas, nenhuma surpresa</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {STEPS.map((step, index) => (
-              <div key={step.title} className="surface-card-pink p-7">
+              <div key={step.title} className="surface-card-cream p-7">
                 <span className="font-display text-3xl text-accent">0{index + 1}</span>
                 <h3 className="mt-3">{step.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{step.body}</p>
+                <p className="mt-3 leading-relaxed text-petrol/80">{step.body}</p>
               </div>
             ))}
           </div>
