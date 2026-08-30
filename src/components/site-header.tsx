@@ -91,7 +91,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-black/10 bg-orange text-black">
+    <footer className="border-t border-foreground/10 bg-orange text-foreground">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 text-sm sm:flex-row sm:items-end sm:justify-between">
         <div>
           <img src={logoAsset.url} alt="Afelino cat sitter" className="h-12 w-auto" />
