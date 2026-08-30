@@ -166,7 +166,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <div className="surface-card-gray flex flex-col items-start justify-between gap-6 p-10 sm:flex-row sm:items-center">
+        <div className="surface-card flex flex-col items-start justify-between gap-6 p-10 sm:flex-row sm:items-center">
           <div>
             <h2>Pronto para combinar as datas?</h2>
             <p className="mt-2 max-w-lg text-muted-foreground">
